@@ -1,7 +1,8 @@
 # PipelineBuilder
 
 [![Java CI with Maven](https://github.com/erlik/pipeline_builder/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/erlik/pipeline_builder/actions/workflows/maven.yml)
-[![Coverage Report](https://github.com/erlik/pipeline_builder/actions/workflows/coverage.yml/badge.svg)](https://github.com/erlik/pipeline_builder/actions/workflows/coverage.yml)
+![Coverage](.github/badges/jacoco.svg)
+![Branches Coverage](.github/badges/branches.svg)
 
 > **PipelineBuilder** is a lightweight pipeline processing and a powerfull helper to create requestBus and requestBus
 
