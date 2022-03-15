@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 public class PipelineValidatorUtil {
 
+    private PipelineValidatorUtil() {
+    }
+
     public static <TObject> Predicate<List<TObject>> notEmpty() {
         return s -> !s.isEmpty();
     }

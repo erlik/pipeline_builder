@@ -30,12 +30,24 @@ public class PreconditionsTest {
     }
 
     @Test
-    public void returnsAnArgumentIfTheArgumentIsAValidObject() {
+    public void returnsAnArgumentWithoutMsgIfTheArgumentIsAValidObject() {
         // given
         Object checkedObject = new Object();
 
         // when
         Object returnedObject = Preconditions.isNotNull(checkedObject, "OK");
+
+        // then
+        assertThat(returnedObject).isEqualTo(checkedObject);
+    }
+
+    @Test
+    public void returnsAnArgumentIfTheArgumentIsAValidObject() {
+        // given
+        Object checkedObject = new Object();
+
+        // when
+        Object returnedObject = Preconditions.isNotNull(checkedObject);
 
         // then
         assertThat(returnedObject).isEqualTo(checkedObject);

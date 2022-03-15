@@ -9,9 +9,8 @@ public record GenericValidation<TParam>(TParam param) {
     }
 
     public GenericValidationResult expected(Predicate<TParam> predicate) {
-        return predicate.test(param)
+        return predicate.test(param())
                ? GenericValidationResult.ok()
                : GenericValidationResult.fail();
     }
-
 }

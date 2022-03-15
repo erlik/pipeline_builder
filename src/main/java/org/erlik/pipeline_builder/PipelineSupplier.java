@@ -36,7 +36,7 @@ public interface PipelineSupplier<TObject> {
         private <TSeed> TSeed spread(TSeed seed,
                                      BiFunction<? super TObject, TSeed, TSeed> accumulator) {
             TSeed result = seed;
-            for (TObject i : list.collect(reverse())) {
+            for (TObject i : list().collect(reverse())) {
                 result = accumulator.apply(i, result);
             }
             return result;
