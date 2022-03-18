@@ -1,8 +1,9 @@
 package org.erlik.pipeline_builder;
 
+import org.erlik.pipeline_builder.PipelineSupplier.Supply;
+
 import java.util.List;
 import java.util.function.Function;
-import org.erlik.pipeline_builder.PipelineSupplier.Supply;
 
 public interface Pipeline {
 
@@ -19,5 +20,9 @@ public interface Pipeline {
         <TReturn> List<TReturn> dispatch();
 
         <TReturn> TReturn first();
+
+        List<PipelineHandler> handlers();
+
+        PipelineHandler handler();
     }
 }

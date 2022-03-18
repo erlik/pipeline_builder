@@ -21,7 +21,7 @@ public interface PipelineHandler<TRequest, TReturn> {
         return handlerCommandClass.isAssignableFrom(otherClass);
     }
 
-    TReturn handle(TRequest request);
+    TReturn handleRequest(TRequest request);
 
     default boolean matches(TRequest request) {
         Class<?> handlerType = getClass();

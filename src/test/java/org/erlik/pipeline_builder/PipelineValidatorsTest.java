@@ -145,7 +145,7 @@ public class PipelineValidatorsTest {
         private final Collection<PingRequest> receivedPingRequests = new ArrayList<>();
 
         @Override
-        public String handle(PingRequest request) {
+        public String handleRequest(PingRequest request) {
             this.receivedPingRequests.add(request);
             return receivedPingRequests.toString();
         }
@@ -162,7 +162,7 @@ public class PipelineValidatorsTest {
         private final Collection<PingRequest> receivedPingRequests = new ArrayList<>();
 
         @Override
-        public String handle(PingRequest request) {
+        public String handleRequest(PingRequest request) {
             this.receivedPingRequests.add(request);
             return receivedPingRequests.toString();
         }
@@ -177,7 +177,7 @@ public class PipelineValidatorsTest {
         implements PipelineHandler<PingRequest, String> {
 
         @Override
-        public String handle(PingRequest request) {
+        public String handleRequest(PingRequest request) {
             return "Pong 1";
         }
     }
@@ -186,7 +186,7 @@ public class PipelineValidatorsTest {
         implements PipelineHandler<PingRequest, String> {
 
         @Override
-        public String handle(PingRequest request) {
+        public String handleRequest(PingRequest request) {
             return "Pong 2";
         }
     }
@@ -202,7 +202,7 @@ public class PipelineValidatorsTest {
         private final Collection<PingRequest> receivedPingRequests = new ArrayList<>();
 
         @Override
-        public String handle(PingRequest request) {
+        public String handleRequest(PingRequest request) {
             this.receivedPingRequests.add(request);
             return receivedPingRequests.toString();
         }

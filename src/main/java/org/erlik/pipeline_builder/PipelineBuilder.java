@@ -52,7 +52,7 @@ public class PipelineBuilder
     public class Dispatcher<TRequest>
             implements Pipeline.Dispatcher {
 
-        @SuppressWarnings({"rawtypes"})
+     @SuppressWarnings({"rawtypes"})
         private final List<PipelineHandler> handlers;
         private final TRequest request;
 
@@ -81,7 +81,7 @@ public class PipelineBuilder
                     .stream()
                     .map(handler -> {
                         Next<TReturn> supplier = new HandleRequest<>(() ->
-                                (TReturn) handler.handle(request));
+                                (TReturn) handler.handleRequest(request));
                         return requestMiddlewares
                                 .spread(supplier, (step, next) -> () -> step.invoke(next))
                                 .invoke();
@@ -93,6 +93,16 @@ public class PipelineBuilder
         @SuppressWarnings({"unchecked"})
         public <TReturn> TReturn first() {
             return (TReturn) dispatch().stream().findFirst().orElse(null);
+        }
+
+        @Override
+        public List<PipelineHandler> handlers() {
+            return handlers;
+        }
+
+        @Override
+        public PipelineHandler handler() {
+            return handlers.stream().findFirst().orElse(null);
         }
     }
 }

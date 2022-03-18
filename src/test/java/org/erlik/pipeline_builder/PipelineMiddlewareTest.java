@@ -44,7 +44,7 @@ public class PipelineMiddlewareTest {
             implements PipelineHandler<PingRequest, String> {
 
             @Override
-            public String handle(PingRequest request) {
+            public String handleRequest(PingRequest request) {
                 return "Decorated bus execution";
             }
         }

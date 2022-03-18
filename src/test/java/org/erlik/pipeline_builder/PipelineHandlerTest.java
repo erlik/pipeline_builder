@@ -22,6 +22,37 @@ class PipelineHandlerTest {
         assertThat(result).isEqualTo("BarRequest");
     }
 
+    @SuppressWarnings("rawtypes")
+    @Test
+    public void getHandlerListfromDispatcher() {
+        var expectedHeadler = new GenericPipelineTypeHandler();
+
+        Pipeline requestBus = new PipelineBuilder()
+            .handlers(() -> Stream.of(new GenericPipelineTypeHandler()));
+        var request = new FooRequest<>(new BarRequest());
+
+
+        List<PipelineHandler> result = requestBus.submit(request)
+                .handlers();
+        assertThat(result.size()).isEqualTo(1);
+        assertThat(result.get(0).getClass()).isEqualTo(expectedHeadler.getClass());
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Test
+    public void getHandlerfromDispatcher() {
+        var expectedHeadler = new GenericPipelineTypeHandler();
+
+        Pipeline requestBus = new PipelineBuilder()
+            .handlers(() -> Stream.of(new GenericPipelineTypeHandler()));
+        var request = new FooRequest<>(new BarRequest());
+
+
+       PipelineHandler result = requestBus.submit(request)
+                .handler();
+        assertThat(result.getClass()).isEqualTo(expectedHeadler.getClass());
+    }
+
     @Test
     public void handlesQueriesThatAreSubtypesOfAGenericArgument() {
         // given
@@ -62,7 +93,7 @@ class PipelineHandlerTest {
         implements PipelineHandler<FooRequest<C>, R> {
 
         @Override
-        public R handle(FooRequest<C> request) {
+        public R handleRequest(FooRequest<C> request) {
             return (R) request.request().getClass().getSimpleName();
         }
     }
@@ -78,7 +109,7 @@ class PipelineHandlerTest {
         private final List<String> handled = new ArrayList<>();
 
         @Override
-        public List<String> handle(PingRequest request) {
+        public List<String> handleRequest(PingRequest request) {
             handled.add(request.getClass().getSimpleName());
             return handled;
         }
@@ -100,7 +131,7 @@ class PipelineHandlerTest {
         private final List<String> handled = new ArrayList<>();
 
         @Override
-        public List<String> handle(NotAPing request) {
+        public List<String> handleRequest(NotAPing request) {
             handled.add(request.getClass().getSimpleName());
             return handled;
         }
